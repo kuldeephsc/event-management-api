@@ -219,24 +219,6 @@ Passwords are hashed using bcrypt before storing them in the database.
 
 ---
 
-## Important Fix
-
-JWT claims return numeric values as `float64`.
-
-```go
-userId := int64(claims["userId"].(float64))
-```
-
-Without this fix, authenticated APIs may return:
-
-```text
-500 Internal Server Error
-```
-
-Because type assertions in Go are extremely polite right until they detonate your application.
-
----
-
 ## Sample Authorization Header
 
 ```http
